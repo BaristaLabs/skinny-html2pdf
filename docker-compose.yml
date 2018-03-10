@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  baristalabs.skinnyhtml2pdf.web:
+    image: baristalabs.skinnyhtml2pdf.web
+    build:
+      context: .
+      dockerfile: BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  baristalabs.skinnyhtml2pdf.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
