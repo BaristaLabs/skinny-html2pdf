@@ -30,7 +30,10 @@
             var serviceCollection = new ServiceCollection();
             services.AddSingleton(chrome);
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Add(new TextPlainInputFormatter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,11 +45,6 @@
             }
 
             app.UseMvc();
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
         }
     }
 }

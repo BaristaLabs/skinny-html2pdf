@@ -8,7 +8,7 @@
 
     public sealed partial class Chrome
     {
-        public async Task<byte[]> CaptureImage(string url, int? width, int? height)
+        public async Task<byte[]> CapturePdf(string url, int? width, int? height, bool? printBackground)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -27,7 +27,7 @@
 
             var s = new SemaphoreSlim(0, 1);
             var newSessionInfo = await CreateNewSession();
-            byte[] screenshotData = null;
+            byte[] pdfData = null;
 
             try
             {
@@ -37,21 +37,13 @@
 
                     session.Page.SubscribeToLoadEventFiredEvent(async (e) =>
                     {
-                        var screenshot = await session.Page.CaptureScreenshot(new CaptureScreenshotCommand()
+                        var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
                         {
-                            Format = "png",
-                            Clip = new Viewport()
-                            {
-                                X = 0,
-                                Y = 0,
-                                Width = width.Value,
-                                Height = height.Value,
-                                Scale = 1.0,
-                            }
+                            PrintBackground = printBackground
                         });
 
                         s.Release();
-                        screenshotData = Convert.FromBase64String(screenshot.Data);
+                        pdfData = Convert.FromBase64String(pdf.Data);
                     });
 
                     //Set the viewport size
@@ -73,11 +65,11 @@
             }
             finally
             {
-                await this.CloseSession(newSessionInfo);
+                await CloseSession(newSessionInfo);
                 s.Dispose();
             }
 
-            return screenshotData;
+            return pdfData;
         }
     }
 }

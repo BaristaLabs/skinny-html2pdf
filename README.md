@@ -29,6 +29,18 @@ docker build -rm -t oceanswave/skinnyhtml2pdf:latest -f BaristaLabs.SkinnyHtml2P
 docker run -d -p 80:8080 --cap-add SYS_ADMIN oceanswave/skinnyhtml2pdf
 ```
 
+Once the container is running, the services will be hosted at localhost:80.
+
+The services can now be used, for instance:
+
+http://localhost/api/html2pdf?url=https://medium.com/netflix-techblog/embracing-the-differences-inside-the-netflix-api-redesign-15fd8b3dc49d&fileName=myarticle.pdf
+
+http://localhost/api/html2image?url=https://www.pexels.com/photo/white-and-yellow-flower-with-green-stems-36764/
+
+The service also supports ad-hoc conversion of Html to PDF.
+
+Simply POST to http://localhost/api/html2pdf with the body containing of the HTML to convert into PDF.
+
 ##### Hosting on Azure
 ---
 

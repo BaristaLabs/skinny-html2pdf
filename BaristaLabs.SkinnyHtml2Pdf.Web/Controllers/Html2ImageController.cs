@@ -18,8 +18,13 @@
 
         // GET api/html2image
         [HttpGet]
-        public async Task<IActionResult> Get(string url, int? width, int? height)
+        public async Task<IActionResult> Get(string url, int? width, int? height, string fileName)
         {
+            if (!string.IsNullOrWhiteSpace(fileName))
+            {
+                Response.Headers.Add("Content-Disposition", $"inline; filename={fileName}");
+            }
+
             var screenshotData = await Chrome.CaptureImage(url, width, height);
             return new FileContentResult(screenshotData, "image/png");
         }
