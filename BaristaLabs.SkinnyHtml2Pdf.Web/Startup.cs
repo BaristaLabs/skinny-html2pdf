@@ -27,6 +27,7 @@ namespace BaristaLabs.SkinnyHtml2Pdf.Web
 
             app.Run(async (context) =>
             {
+                Console.WriteLine("asdfasdfasdf");
                 await context.Response.WriteAsync("Hello World!");
             });
         }
