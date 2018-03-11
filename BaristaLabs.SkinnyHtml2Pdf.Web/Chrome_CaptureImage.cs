@@ -27,7 +27,7 @@
 
             var s = new SemaphoreSlim(0, 1);
             var newSessionInfo = await CreateNewSession();
-            byte[] screenshotData = null;
+            byte[] screenshotData = new byte[] { };
 
             try
             {
@@ -50,8 +50,11 @@
                             }
                         }, millisecondsTimeout: 120 * 1000);
 
-                        s.Release();
-                        screenshotData = Convert.FromBase64String(screenshot.Data);
+                        if (!String.IsNullOrWhiteSpace(screenshot.Data))
+                        {
+                            s.Release();
+                            screenshotData = Convert.FromBase64String(screenshot.Data);
+                        }
                     });
 
                     //Set the viewport size

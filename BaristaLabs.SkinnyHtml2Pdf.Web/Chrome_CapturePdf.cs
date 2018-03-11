@@ -27,7 +27,7 @@
 
             var s = new SemaphoreSlim(0, 1);
             var newSessionInfo = await CreateNewSession();
-            byte[] pdfData = null;
+            byte[] pdfData = new byte[] { };
 
             try
             {
@@ -42,8 +42,11 @@
                             PrintBackground = printBackground
                         }, millisecondsTimeout: 120 * 1000);
 
-                        s.Release();
-                        pdfData = Convert.FromBase64String(pdf.Data);
+                        if (!String.IsNullOrWhiteSpace(pdf.Data))
+                        {
+                            s.Release();
+                            pdfData = Convert.FromBase64String(pdf.Data);
+                        }
                     });
 
                     //Set the viewport size
