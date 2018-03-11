@@ -74,6 +74,10 @@ az appservice plan create --name skinnyHtml2PdfServicePlan --resource-group skin
 az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2PdfServicePlan --name skinny-html2pdf --deployment-container-image-name oceanswave/skinny-html2pdf:latest
 ```
 
+> Note: Due to https://bugs.chromium.org/p/chromium/issues/detail?id=736452#c33 and the inability to pass parameters to docker run with Azure Web Apps for Containers,
+> responses are sporatic and my return 0-byte responses due to the chrome session running out of memory. Use a VM host with docker compose or wait until Alpine has
+> support for Chrome 65+
+
 ##### Development
 ---
 
