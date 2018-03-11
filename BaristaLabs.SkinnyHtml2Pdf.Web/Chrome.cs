@@ -6,7 +6,6 @@
     using System.Diagnostics;
     using System.IO;
     using System.Net.Http;
-    using System.Runtime.InteropServices;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -25,6 +24,7 @@
           "--disable-prompt-on-repost",
           "--disable-sync",
           "--disable-translate",
+          "--disable-dev-shm-usage",
           "--metrics-recording-only",
           "--no-first-run",
           "--safebrowsing-disable-auto-update",

@@ -1,10 +1,11 @@
-version: '3'
+version: '3.5'
 
 services:
   skinny-html2pdf:
     image: oceanswave/skinny-html2pdf
     build:
       context: .
+      shm_size: '1gb'
       dockerfile: BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile
     ports:
       - "80:8080"
