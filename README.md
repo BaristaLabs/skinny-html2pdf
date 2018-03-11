@@ -16,7 +16,7 @@ Image size without Chrome: 160mb. With Chrome: 537mb.
 
 Available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pdf/
 
-##### Getting Started
+### Getting Started
 ---
 [Docker](https://www.docker.com/get-docker) must be installed and running.
 
@@ -64,7 +64,7 @@ az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2
 ```
 
 > Note: Due to https://bugs.chromium.org/p/chromium/issues/detail?id=736452#c33 and the inability to pass parameters to docker run with Azure Web Apps for Containers,
-> responses are sporatic and my return 0-byte responses due to the chrome session running out of memory. Use a VM host with docker compose or wait until Alpine has
+> responses are sporatic and may return 0-byte responses due to the chrome session running out of memory. Use a VM host with docker compose or wait until Alpine has
 > support for Chrome 65+
 
 ### Development
