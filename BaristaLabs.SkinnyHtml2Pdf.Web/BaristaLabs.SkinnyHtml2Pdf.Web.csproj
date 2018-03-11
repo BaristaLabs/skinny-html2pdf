@@ -6,12 +6,21 @@
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0-preview1-final" />
+    <PackageReference Include="BaristaLabs.ChromeDevTools.Runtime" Version="64.0.3282.119" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-preview1-final" />
   </ItemGroup>
   
 </Project>

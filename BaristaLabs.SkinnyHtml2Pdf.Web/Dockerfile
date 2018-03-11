@@ -1,7 +1,17 @@
 # Genius: https://www.atlascode.com/blog/running-asp-net-core-in-an-alpine-linux-docker-container/
 FROM microsoft/dotnet:2.1-runtime-alpine AS base
+
+# Installs latest Chromium (64) package.
+RUN apk update && apk upgrade && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
+    apk add --no-cache \
+      chromium@edge \
+      nss@edge
+
+ENV CHROME_BIN /usr/bin/chromium-browser
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 FROM microsoft/dotnet:2.1-sdk-alpine AS build
 WORKDIR /src
@@ -20,4 +30,14 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/linux/libuv.so .
 COPY --from=publish /app/alpine .
+
+# Add user so we don't need --no-sandbox.
+RUN addgroup -S baristauser && adduser -S -g baristauser baristauser \
+    && mkdir -p /home/baristauser/Downloads \
+    && chown -R baristauser:baristauser /home/baristauser \
+    && chown -R baristauser:baristauser /app
+
+# Run everything after as non-privileged user.
+USER baristauser
+
 ENTRYPOINT ["dotnet", "BaristaLabs.SkinnyHtml2Pdf.Web.dll"]

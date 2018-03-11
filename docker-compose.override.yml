@@ -4,5 +4,3 @@ services:
   skinnyhtml2pdf:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80:80"
