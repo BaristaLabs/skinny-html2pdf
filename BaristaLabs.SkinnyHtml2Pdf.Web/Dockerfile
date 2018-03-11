@@ -10,6 +10,7 @@ RUN apk update && apk upgrade && \
       nss@edge
 
 ENV CHROME_BIN /usr/bin/chromium-browser
+ENV CHROME_NO_SANDBOX true
 WORKDIR /app
 EXPOSE 8080
 

@@ -206,6 +206,11 @@
             }
 
             chromeProcessArgs += $@" {remoteDebuggingArg} {userDirectoryArg}";
+        
+            if(!String.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("CHROME_NO_SANDBOX")))
+            {
+                chromeProcessArgs += " --no-sandbox";
+            }
 
             var processId = Process.GetCurrentProcess().Id;
             var chromeProcess = Process.Start(new ProcessStartInfo

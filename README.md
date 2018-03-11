@@ -33,7 +33,7 @@ The microservice can be built without docker-compose as well.
 git clone https://github.com/baristalabs/skinny-html2pdf
 cd skinny-html2pdf
 docker build -rm -t oceanswave/skinnyhtml2pdf:latest -f BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile .
-docker run -d -p 80:8080 --cap-add SYS_ADMIN oceanswave/skinnyhtml2pdf
+docker run -d -p 80:8080 --cap-add SYS_ADMIN oceanswave/skinny-html2pdf
 ```
 
 Once the container is running, the services will be hosted at localhost:80.
