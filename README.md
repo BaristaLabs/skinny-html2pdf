@@ -5,9 +5,16 @@ Skinny Html2PDF is a .Net Core 2.1 based microservice that converts Html to PDF 
 
 This project also contains a dockerfile that will build and run the microservice in a minimal environment.
 
- - Built using .Net Core 2.1 
- - Docker image based on Alpine Linux
- - Image size without Chrome: 160mb. With Chrome: 537mb. (Of course Chrome is required.)
+While perhaps interesting in itself, some effort was made to make this stack 'skinny':
+
+ - Built using .Net Core 2.1 (Preview) (2.1 is skinner than 2.0)
+ - Docker image based on Alpine Linux (Alpine is skinner than standard debian)
+ - TODO: Tree Trimming tools (seems to be broken in current Alpine)
+
+Image size without Chrome: 160mb. With Chrome: 537mb.
+(Of course, Chrome is required, this metric is just to illustrate the base vs base + chrome image size)
+
+Available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pdf/
 
 ##### Getting Started
 ---
@@ -44,7 +51,13 @@ Simply POST to http://localhost/api/html2pdf with the body containing of the HTM
 ##### Hosting on Azure
 ---
 
-TODO
+Generally, follow the instructions on https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image
+
+``` Powershell
+az group create --name skinnyHtml2PdfResourceGroup --location "East US 2"
+az appservice plan create --name skinnyHtml2PdfServicePlan --resource-group skinnyHtml2PdfResourceGroup --sku B1 --is-linux
+az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2PdfServicePlan --name skinny-html2pdf --deployment-container-image-name oceanswave/skinny-html2pdf:latest
+```
 
 ##### Development
 ---

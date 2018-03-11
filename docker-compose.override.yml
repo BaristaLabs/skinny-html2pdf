@@ -1,6 +1,6 @@
 version: '3'
 
 services:
-  skinnyhtml2pdf:
+  skinny-html2pdf:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
