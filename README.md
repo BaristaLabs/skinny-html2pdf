@@ -21,18 +21,7 @@ Available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pd
 [Docker](https://www.docker.com/get-docker) must be installed and running.
 
 ``` bash
-git clone https://github.com/baristalabs/skinny-html2pdf
-cd skinny-html2pdf
-docker-compose build
-docker-compose up -d
-```
-
-The microservice can be built without docker-compose as well.
-
-``` bash
-git clone https://github.com/baristalabs/skinny-html2pdf
-cd skinny-html2pdf
-docker build -rm -t oceanswave/skinnyhtml2pdf:latest -f BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile .
+docker pull oceanswave/skinny-html2pdf
 docker run -d -p 80:8080 --shm-size=1gb --cap-add SYS_ADMIN oceanswave/skinny-html2pdf
 ```
 
@@ -63,7 +52,7 @@ Parameters:
  - height: Height in pixels of the page to render
  - filename: content-disposition filename value
 
-##### Hosting on Azure
+### Hosting on Azure
 ---
 
 Generally, follow the instructions on https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image
@@ -78,9 +67,25 @@ az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2
 > responses are sporatic and my return 0-byte responses due to the chrome session running out of memory. Use a VM host with docker compose or wait until Alpine has
 > support for Chrome 65+
 
-##### Development
+### Development
 ---
 
 As .Net Core 2.1 is still in development, the .Net Core 2.1 Preview SDK must be downloaded and installed. 
 
 The latest version of Chromium available for Alpine at the time of this writing is Chrome 64.
+
+``` bash
+git clone https://github.com/baristalabs/skinny-html2pdf
+cd skinny-html2pdf
+docker-compose build
+docker-compose up -d
+```
+
+The microservice can be built without docker-compose as well.
+
+``` bash
+git clone https://github.com/baristalabs/skinny-html2pdf
+cd skinny-html2pdf
+docker build -rm -t oceanswave/skinnyhtml2pdf:latest -f BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile .
+docker run -d -p 80:8080 --shm-size=1gb --cap-add SYS_ADMIN oceanswave/skinny-html2pdf
+```
