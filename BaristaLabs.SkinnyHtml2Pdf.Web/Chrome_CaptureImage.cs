@@ -48,7 +48,7 @@
                                 Height = height.Value,
                                 Scale = 1.0,
                             }
-                        });
+                        }, millisecondsTimeout: 120 * 1000);
 
                         s.Release();
                         screenshotData = Convert.FromBase64String(screenshot.Data);
@@ -66,14 +66,14 @@
                     var navigateResult = await session.Page.Navigate(new NavigateCommand
                     {
                         Url = url
-                    });
+                    }, millisecondsTimeout: 120 * 1000);
 
                     await s.WaitAsync();
                 }
             }
             finally
             {
-                await this.CloseSession(newSessionInfo);
+                await CloseSession(newSessionInfo);
                 s.Dispose();
             }
 

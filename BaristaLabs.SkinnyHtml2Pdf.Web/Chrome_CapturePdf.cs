@@ -40,7 +40,7 @@
                         var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
                         {
                             PrintBackground = printBackground
-                        });
+                        }, millisecondsTimeout: 120 * 1000);
 
                         s.Release();
                         pdfData = Convert.FromBase64String(pdf.Data);
@@ -58,7 +58,7 @@
                     var navigateResult = await session.Page.Navigate(new NavigateCommand
                     {
                         Url = url
-                    });
+                    }, millisecondsTimeout: 120 * 1000);
 
                     await s.WaitAsync();
                 }

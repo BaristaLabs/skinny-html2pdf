@@ -53,14 +53,14 @@
                     {
                         FrameId = frameTreeResponse.FrameTree.Frame.Id,
                         Html = html
-                    });
+                    }, millisecondsTimeout: 120 * 1000);
 
                     await Task.Delay(delayMs.Value);
 
                     var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
                     {
                         PrintBackground = printBackground
-                    });
+                    }, millisecondsTimeout: 120 * 1000);
 
                     return Convert.FromBase64String(pdf.Data);
                 }
