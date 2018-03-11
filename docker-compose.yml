@@ -2,7 +2,7 @@ version: '3'
 
 services:
   skinnyhtml2pdf:
-    image: skinnyhtml2pdf
+    image: oceanswave/skinnyhtml2pdf
     build:
       context: .
       dockerfile: BaristaLabs.SkinnyHtml2Pdf.Web/Dockerfile
