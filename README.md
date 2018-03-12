@@ -38,6 +38,7 @@ Parameters:
  - width: Width in pixels of the page to render
  - height: Height in pixels of the page to render
  - filename: content-disposition filename value
+ - landscape: true to output in landscape
  
 http://localhost/api/html2image?url=https://www.pexels.com/photo/white-and-yellow-flower-with-green-stems-36764/
 
@@ -55,6 +56,7 @@ Parameters:
  - width: Width in pixels of the page to render
  - height: Height in pixels of the page to render
  - filename: content-disposition filename value
+ - landscape: true to output in landscape mode
 
 ### Hosting on Azure
 ---

@@ -7,7 +7,7 @@
 
     public sealed partial class Chrome
     {
-        public async Task<byte[]> CapturePdf(string url, int? width, int? height, bool? printBackground)
+        public async Task<byte[]> CapturePdf(string url, int? width, int? height, bool? landscape, bool? printBackground)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -53,7 +53,8 @@
 
                     var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
                     {
-                        PrintBackground = printBackground
+                        PrintBackground = printBackground,
+                        Landscape = landscape,
                     }, millisecondsTimeout: 120 * 1000);
 
                     if (!String.IsNullOrWhiteSpace(pdf.Data))
