@@ -1,7 +1,7 @@
 Skinny Html2PDF
 ======
 
-Skinny Html2PDF is a .Net Core 2.1 based microservice that converts Html to PDF using [chrome-dev-tools-runtime](https://github.com/BaristaLabs/chrome-dev-tools-runtime)
+Skinny Html2PDF is a .Net Core 2.1 based microservice that converts Html to PDF using [chrome-dev-tools-runtime](https://github.com/BaristaLabs/chrome-dev-tools-runtime) to automate headless chrome.
 
 This project also contains a dockerfile that will build and run the microservice in a minimal environment.
 
