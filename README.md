@@ -10,6 +10,7 @@ While perhaps interesting in itself, some effort was made to make this stack 'sk
  - Built using .Net Core 2.1 (Preview) (2.1 is skinner than 2.0)
  - Docker image based on Alpine Linux (Alpine is skinner than standard debian)
  - TODO: Tree Trimming tools (seems to be broken in current Alpine)
+ - TODO: https://github.com/docker-slim/docker-slim
 
 Image size without Chrome: 150mb. With Chrome: 600mb.
 (Of course, Chrome is required, this metric is just to illustrate the base vs base + chrome image size)
