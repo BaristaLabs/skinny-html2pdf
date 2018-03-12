@@ -74,7 +74,9 @@ az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2
 
 As .Net Core 2.1 is still in development, the .Net Core 2.1 Preview SDK must be downloaded and installed. 
 
-The latest version of Chromium available for Alpine at the time of this writing is Chrome 64.
+The latest version of Chromium available for Alpine at the time of this writing is Chrome 64, so chrome-dev-tools-runtime should not be upgraded to latest.
+
+Build using docker-compose:
 
 ``` bash
 git clone https://github.com/baristalabs/skinny-html2pdf
