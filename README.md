@@ -16,7 +16,9 @@ Image size without Chrome: 150mb. With Chrome: 600mb.
 
 Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad pudgy 'round the middle. Still, not bad for an entire OS + .Net Core + Chrome.
 
-Available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pdf/
+One might separate chromium from the rest of the stack and have a swarm/k8s of chrome-only containers allowing for multi-purpose use. *that* would be interesting. 'Browser Cloud'
+
+Anyway, the all-in-one image is available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pdf/
 
 ### Getting Started
 ---
