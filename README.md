@@ -14,7 +14,7 @@ While perhaps interesting in itself, some effort was made to make this stack 'sk
 Image size without Chrome: 150mb. With Chrome: 600mb.
 (Of course, Chrome is required, this metric is just to illustrate the base vs base + chrome image size)
 
-Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad round around the middle.
+Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad pudgy 'round the middle. Still, not bad for an entire OS + .Net Core + Chrome.
 
 Available on docker hub here: https://hub.docker.com/r/oceanswave/skinny-html2pdf/
 
