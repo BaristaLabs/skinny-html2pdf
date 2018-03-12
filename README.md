@@ -74,7 +74,7 @@ az webapp create --resource-group skinnyHtml2PdfResourceGroup --plan skinnyHtml2
 ### Development
 ---
 
-VS2017. As .Net Core 2.1 is still in development, the .Net Core 2.1 Preview SDK must be downloaded and installed. 
+VS2017 15.6+. As .Net Core 2.1 is still in development, the .Net Core 2.1 Preview SDK must be downloaded and installed. 
 
 The latest version of Chromium available for Alpine at the time of this writing is Chrome 64, so chrome-dev-tools-runtime should not be upgraded to latest.
 
