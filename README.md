@@ -14,7 +14,7 @@ While perhaps interesting in itself, some effort was made to make this stack 'sk
 Image size without Chrome: 150mb. With Chrome: 600mb.
 (Of course, Chrome is required, this metric is just to illustrate the base vs base + chrome image size)
 
-Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad pudgy 'round the middle. Still, not bad for an entire OS + .Net Core + Chrome.
+Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad pudgy 'round the middle; Grande, if you will. Still, not bad for an entire OS + .Net Core + Chrome.
 
 One might separate chromium from the rest of the stack and have a swarm/k8s of chrome-only containers allowing for multi-purpose use. *that* would be interesting. 'Browser Cloud'
 
