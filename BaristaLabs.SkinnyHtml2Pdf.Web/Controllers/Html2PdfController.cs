@@ -30,14 +30,14 @@
 
         // POST api/Html2Pdf
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]string html, [FromQuery]int? width, [FromQuery]int? height, [FromQuery]int? delayMs, [FromQuery]string fileName)
+        public async Task<IActionResult> Post([FromBody]string html, [FromQuery]int? width, [FromQuery]int? height, [FromQuery]string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 fileName = "converted.pdf";
             }
 
-            var pdfData = await Chrome.ConvertHtmlToPdf(html, width, height, false, delayMs);
+            var pdfData = await Chrome.ConvertHtmlToPdf(html, width, height, false);
             Response.Headers.Add("Content-Disposition", $"inline; filename={fileName}");
             return new FileContentResult(pdfData, "application/pdf");
         }

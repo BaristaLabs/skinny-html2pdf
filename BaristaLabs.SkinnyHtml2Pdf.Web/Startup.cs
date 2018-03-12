@@ -20,12 +20,23 @@
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            Console.WriteLine("Launching Chrome...");
-            var chrome = Chrome.OpenChrome();
+            Chrome chrome;
+            if (Environment.GetEnvironmentVariable("CHROME_LAUNCH_LOCAL") == "true")
+            {
+                Console.WriteLine("Launching Chrome...");
+                var chromeProcess = ChromeProcess.LaunchChrome();
 
-            //TODO: We should probably wait here for a spell as it takes a few seconds for chrome to fire up...
+                //TODO: We should probably wait here for a spell as it takes a few seconds for chrome to fire up...
 
-            Console.WriteLine($"Chrome running at {chrome.RemoteDebuggingPort}");
+                Console.WriteLine($"Chrome running at {chromeProcess.RemoteDebuggingPort}");
+                services.AddSingleton(chromeProcess);
+
+                chrome = new Chrome($"http://localhost:{chromeProcess.RemoteDebuggingPort}");
+            }
+            else
+            {
+                chrome = new Chrome();
+            }
 
             var serviceCollection = new ServiceCollection();
             services.AddSingleton(chrome);

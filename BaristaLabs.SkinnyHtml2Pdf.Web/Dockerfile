@@ -9,8 +9,11 @@ RUN apk update && apk upgrade && \
       chromium@edge \
       nss@edge
 
+ENV CHROME_LAUNCH_LOCAL true
 ENV CHROME_BIN /usr/bin/chromium-browser
+ENV CHROME_REMOTE_DEBUGGING_PORT 9222
 ENV CHROME_NO_SANDBOX true
+
 WORKDIR /app
 EXPOSE 8080
 

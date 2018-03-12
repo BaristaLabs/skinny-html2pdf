@@ -3,7 +3,6 @@
     using BaristaLabs.ChromeDevTools.Runtime;
     using BaristaLabs.ChromeDevTools.Runtime.Page;
     using System;
-    using System.Threading;
     using System.Threading.Tasks;
 
     public sealed partial class Chrome
@@ -25,30 +24,12 @@
                 height = 1024;
             }
 
-            var s = new SemaphoreSlim(0, 1);
             var newSessionInfo = await CreateNewSession();
-            byte[] pdfData = new byte[] { };
 
             try
             {
                 using (var session = new ChromeSession(newSessionInfo.WebSocketDebuggerUrl))
                 {
-                    await session.Page.Enable();
-
-                    session.Page.SubscribeToLoadEventFiredEvent(async (e) =>
-                    {
-                        var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
-                        {
-                            PrintBackground = printBackground
-                        }, millisecondsTimeout: 120 * 1000);
-
-                        if (!String.IsNullOrWhiteSpace(pdf.Data))
-                        {
-                            s.Release();
-                            pdfData = Convert.FromBase64String(pdf.Data);
-                        }
-                    });
-
                     //Set the viewport size
                     await session.Emulation.SetDeviceMetricsOverride(new ChromeDevTools.Runtime.Emulation.SetDeviceMetricsOverrideCommand()
                     {
@@ -58,21 +39,35 @@
                         Mobile = false,
                     });
 
-                    var navigateResult = await session.Page.Navigate(new NavigateCommand
+                    using (var navigatorWatcher = new NavigatorWatcher(session))
                     {
-                        Url = url
+                        await navigatorWatcher.Start();
+
+                        var navigateResult = await session.Page.Navigate(new NavigateCommand
+                        {
+                            Url = url
+                        }, millisecondsTimeout: 120 * 1000);
+
+                        await navigatorWatcher.WaitForNetworkIdle();
+                    }
+
+                    var pdf = await session.Page.PrintToPDF(new PrintToPDFCommand()
+                    {
+                        PrintBackground = printBackground
                     }, millisecondsTimeout: 120 * 1000);
 
-                    await s.WaitAsync();
+                    if (!String.IsNullOrWhiteSpace(pdf.Data))
+                    {
+                        return Convert.FromBase64String(pdf.Data);
+                    }
+
+                    return new byte[] { };
                 }
             }
             finally
             {
                 await CloseSession(newSessionInfo);
-                s.Dispose();
             }
-
-            return pdfData;
         }
     }
 }
