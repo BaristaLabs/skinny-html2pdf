@@ -34,7 +34,7 @@ Once the container is running, the services will be hosted at localhost:80 and e
 http://localhost/api/html2pdf?url=https://medium.com/netflix-techblog/embracing-the-differences-inside-the-netflix-api-redesign-15fd8b3dc49d&fileName=myarticle.pdf
 
 Parameters:
- - uri: full uri of the web page to render
+ - url: full uri of the web page to render
  - width: Width in pixels of the page to render
  - height: Height in pixels of the page to render
  - filename: content-disposition filename value
@@ -42,7 +42,7 @@ Parameters:
 http://localhost/api/html2image?url=https://www.pexels.com/photo/white-and-yellow-flower-with-green-stems-36764/
 
 Parameters:
- - uri: full uri of the web page to render
+ - url: full uri of the web page to render
  - width: Width in pixels of the page to render
  - height: Height in pixels of the page to render
  - filename: content-disposition filename value
