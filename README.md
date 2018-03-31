@@ -12,7 +12,7 @@ While perhaps interesting in itself, some effort was made to make this stack 'sk
  - TODO: Tree Trimming tools (seems to be broken in current Alpine)
  - TODO: https://github.com/docker-slim/docker-slim
 
-Image size without Chrome: 150mb. With Chrome: 600mb.
+Image size without Chrome: 150mb. With Chrome: 600mb (232mb compressed)
 (Of course, Chrome is required, this metric is just to illustrate the base vs base + chrome image size)
 
 Erm, so uh, while this started out as skinny html2pdf, the size with Chrome and its dependencies makes things a tad pudgy 'round the middle; Grande, if you will. Still, not bad for an entire OS + .Net Core + Chrome.
